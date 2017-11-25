@@ -11,7 +11,7 @@ resource "aws_route53_record" "www" {
   name    = "www.${var.domain_name}"
   type    = "CNAME"
   ttl     = "300"
-  records = ["${var.domain_name}."]
+  records = ["${var.domain_name}"]
 }
 
 resource "aws_route53_record" "autodiscover" {
@@ -68,10 +68,10 @@ resource "aws_route53_record" "root_mx" {
   records = "${var.mx_records}"
 }
 
-resource "aws_route53_record" "_sipfederationtls" {
+resource "aws_route53_record" "_sipfederationtls_tcp" {
   count = "${var.mx_records[0] != "" ? 1 : 0}"
   zone_id = "${var.zone_id}"
-  name    = "_sipfederationtls.${var.domain_name}"
+  name    = "_sipfederationtls._tcp.${var.domain_name}"
   type    = "SRV"
   ttl     = "3600"
   records = ["100 1 5061 sipfed.online.lync.com"]

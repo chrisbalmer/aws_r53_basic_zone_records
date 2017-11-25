@@ -20,3 +20,4 @@ some basic records, including Office 365 records.
 - `mx_records`
     - Optional.
     - MX records for the domain.
+    - If this is not supplied, no Office 365 records are added.
